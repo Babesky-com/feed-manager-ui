@@ -1,1 +1,1 @@
-node_modules/\n.env\n.build/
+node_modules/\n.svelte-kit/\n.env\n.build/\ndist/

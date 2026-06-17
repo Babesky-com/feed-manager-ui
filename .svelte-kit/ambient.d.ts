@@ -75,6 +75,8 @@ declare module '$env/static/private' {
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GITHUB_PERSONAL_ACCESS_TOKEN: string;
+	export const GIT_EXEC_PATH: string;
+	export const GIT_PREFIX: string;
 	export const HERMES_CRON_SESSION: string;
 	export const HERMES_DESKTOP: string;
 	export const HERMES_EXEC_ASK: string;
@@ -93,6 +95,7 @@ declare module '$env/static/private' {
 	export const IMAGE_TOOLS_DEBUG: string;
 	export const INIT_CWD: string;
 	export const INTEL_DEV_REDIST: string;
+	export const LC_CTYPE: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const MATRIX_ALLOWED_ROOMS: string;
@@ -175,6 +178,7 @@ declare module '$env/static/private' {
 	export const TERMINAL_SINGULARITY_IMAGE: string;
 	export const TERMINAL_TIMEOUT: string;
 	export const TMP: string;
+	export const TMPDIR: string;
 	export const USERDOMAIN: string;
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
@@ -308,6 +312,8 @@ declare module '$env/dynamic/private' {
 		FPS_BROWSER_APP_PROFILE_STRING: string;
 		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GITHUB_PERSONAL_ACCESS_TOKEN: string;
+		GIT_EXEC_PATH: string;
+		GIT_PREFIX: string;
 		HERMES_CRON_SESSION: string;
 		HERMES_DESKTOP: string;
 		HERMES_EXEC_ASK: string;
@@ -326,6 +332,7 @@ declare module '$env/dynamic/private' {
 		IMAGE_TOOLS_DEBUG: string;
 		INIT_CWD: string;
 		INTEL_DEV_REDIST: string;
+		LC_CTYPE: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		MATRIX_ALLOWED_ROOMS: string;
@@ -408,6 +415,7 @@ declare module '$env/dynamic/private' {
 		TERMINAL_SINGULARITY_IMAGE: string;
 		TERMINAL_TIMEOUT: string;
 		TMP: string;
+		TMPDIR: string;
 		USERDOMAIN: string;
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
