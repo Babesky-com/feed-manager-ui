@@ -1,10 +1,1 @@
-node_modules/
-.env
-.env.local
-*.tsbuildinfo
-dist/
-.build/
-.svelte-kit/
-.DS_Store
-*.log
-coverage/
+node_modules/\n.env\n.build/

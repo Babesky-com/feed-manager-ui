@@ -1,0 +1,10 @@
+{
+	"/": [],
+	"/api/feeds": [
+		"src/routes/api/feeds/+server.ts"
+	],
+	"/api/stats": [
+		"src/routes/api/stats/+server.ts"
+	],
+	"/dashboard": []
+}
