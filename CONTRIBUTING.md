@@ -7,6 +7,9 @@ Thanks for your interest in contributing! This document outlines the process.
 1. Fork the repository
 2. Clone your fork: `git clone git@github.com:<your-username>/feed-manager-ui.git`
 3. Install dependencies: `npm ci`
+   - This automatically installs the pre-push hook (via `postinstall`).
+   - The hook runs `npm run check` before every push.
+   - Manual setup if skipped: `git config core.hooksPath .githooks`
 4. Run the type checker: `npm run check`
 5. Start the dev server: `npm run dev`
 
