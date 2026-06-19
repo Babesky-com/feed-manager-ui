@@ -8,7 +8,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "npm run check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Babesky-com/feed-manager-ui.git"
+  },
+  "homepage": "https://github.com/Babesky-com/feed-manager-ui#readme",
+  "bugs": {
+    "url": "https://github.com/Babesky-com/feed-manager-ui/issues"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^4.0.0",
