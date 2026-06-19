@@ -50,7 +50,7 @@ ATProto OAuth client metadata document. The `client_id` in OAuth flows is the UR
 
 ---
 
-### GET /admin/oauth/auth-server?pds=<url>
+### GET /admin/oauth-auth-server?pds=<url>
 Server-side proxy to fetch OAuth authorization server metadata from a PDS URL (avoids browser CORS). Validates URL, blocks SSRF to private addresses.
 
 **Query params:**
@@ -397,4 +397,4 @@ Fetch post metadata (text, author) for display.
 | Sticky posts manager | `/admin/sticky-posts` (GET/POST/DELETE) |
 | Time-series charts | `/admin/metrics/series` |
 | Diagnostics | `/admin/interactions-debug`, `/admin/interaction-ingest-status` |
-| Login | `/admin/oauth/login`, `/admin/oauth/callback`, `/admin/oauth/logout`, `/admin/auth-modes`, `/admin/oauth-client-metadata.json`, `/admin/oauth/auth-server` |
+| Login | `/admin/oauth/login`, `/admin/oauth/callback`, `/admin/oauth/logout`, `/admin/auth-modes`, `/admin/oauth-client-metadata.json`, `/admin/oauth-auth-server` |
