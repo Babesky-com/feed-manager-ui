@@ -4,6 +4,7 @@
 > Inspired by Ozone (the labeler management UI) — but for feed engines.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Babesky-com/feed-manager-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/Babesky-com/feed-manager-ui/actions/workflows/ci.yml)
 
 Feed generators are the backbone of the AT Protocol's discovery layer, but there's no standard way to *manage* them at scale. This project fills that gap — a web UI where you can monitor, configure, and operate one or more feed generator instances from a single dashboard.
 
