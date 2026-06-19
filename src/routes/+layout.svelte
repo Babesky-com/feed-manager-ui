@@ -17,6 +17,7 @@
 		<nav class="main-nav">
 			<a href="/">Home</a>
 			<a href="/dashboard">Dashboard</a>
+			<a href="/dashboard/feed-preview">Feed Preview</a>
 			<a href="https://github.com/Babesky-com/feed-manager-ui" target="_blank">GitHub</a>
 		</nav>
 	</header>

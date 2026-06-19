@@ -1,11 +1,7 @@
-import { json } from '@sveltejs/kit';
+import { proxyToAdmin } from '$lib/server/admin-proxy';
+import type { RequestHandler } from './$types';
 
-/** GET /api/stats — aggregate feed statistics */
-export async function GET() {
-	// Placeholder: returns sample stats until connected to a real feedgen instance
-	return json({
-		dau: 142,
-		feeds: 2,
-		posts: 15420
-	});
-}
+/** GET /api/stats — proxy to feedgen /admin/stats */
+export const GET: RequestHandler = async (event) => {
+	return proxyToAdmin(event, 'stats');
+};

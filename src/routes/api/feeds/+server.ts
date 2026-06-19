@@ -1,18 +1,7 @@
-import { json } from '@sveltejs/kit';
+import { proxyToAdmin } from '$lib/server/admin-proxy';
+import type { RequestHandler } from './$types';
 
-/** GET /api/feeds — list all registered feed generators */
-export async function GET() {
-	// Placeholder: returns sample data until connected to a real feedgen instance
-	return json([
-		{
-			shortname: 'babesky-algo',
-			displayName: 'Babesky Algo',
-			description: 'Personalized ranking with collaborative filtering, behavioral regime detection, and MMR diversity.'
-		},
-		{
-			shortname: 'chronological',
-			displayName: 'Chronological',
-			description: 'Simple reverse-chronological feed.'
-		}
-	]);
-}
+/** GET /api/feeds — proxy to feedgen /admin/feed-daily-metrics-summary */
+export const GET: RequestHandler = async (event) => {
+	return proxyToAdmin(event, 'feed-daily-metrics-summary');
+};
