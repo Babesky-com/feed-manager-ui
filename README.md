@@ -112,8 +112,8 @@ docs/
 
 ## Related
 
-- [`Babesky-com/feedgen`](https://github.com/Babesky-com/feedgen) — the feed generator platform this UI manages
-- [`Babesky-com/personalization-engine`](https://github.com/Babesky-com/personalization-engine) — the ranking/scoring engine that powers the algos
+- [`Babesky-com/feedgen`](https://github.com/Babesky-com/feedgen) — the feed generator platform this UI manages *(currently private — public launch TBD)*
+- [`Babesky-com/personalization-engine`](https://github.com/Babesky-com/personalization-engine) — the ranking/scoring engine that powers the algos *(currently private — public launch TBD)*
 - [Ozone](https://github.com/bluesky-social/ozone) — the inspiration: a management UI for labelers
 
 ## License
