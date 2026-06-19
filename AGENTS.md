@@ -25,7 +25,7 @@ The full admin API contract is at `docs/ADMIN_API_CONTRACT.md` — read it befor
 
 The only required env var is `FEEDGEN_ADMIN_URL` — set it in `.env` (copy from `.env.example`). All other config surfaces are on the feedgen side.
 
-When working on the UI without a live feedgen, you can use the `FEEDGEN_ADMIN_BEARER_TOKEN` env var with a hardcoded token for local/CI testing. In production, leave it empty and session passthrough handles auth automatically.
+When working on the UI without a live feedgen, you can use the `FEEDGEN_ADMIN_BEARER_TOKEN` env var with a hardcoded token for local testing. In production, leave it empty and session passthrough handles auth automatically.
 
 ## Code patterns
 
