@@ -1,0 +1,16 @@
+#!/bin/sh
+# Pre-push hook — runs type check before allowing a push.
+# Installed automatically via npm postinstall (core.hooksPath).
+# Manual setup: git config core.hooksPath .githooks
+
+echo "🔍 Running pre-push type check (npm run check)..."
+npm run check
+result=$?
+
+if [ $result -ne 0 ]; then
+  echo "❌ Pre-push type check failed. Fix errors and push again."
+  exit 1
+fi
+
+echo "✅ Pre-push type check passed."
+exit 0
