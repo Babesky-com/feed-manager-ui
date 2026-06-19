@@ -21,7 +21,7 @@ Just as **Ozone** gives labeler operators a management UI (moderation queues, la
 
 ## Status
 
-**Private/early development.** The admin UI connects to a running [`Babesky-com/feedgen`](https://github.com/Babesky-com/feedgen) instance. This repo is a standalone, general-purpose tool that can manage any feedgen deployment.
+**Public — early development.** The admin UI connects to a running [`Babesky-com/feedgen`](https://github.com/Babesky-com/feedgen) instance. This repo is a standalone, general-purpose tool that can manage any feedgen deployment.
 
 Current pages:
 
