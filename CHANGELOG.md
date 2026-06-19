@@ -12,5 +12,5 @@
 - Dark theme design system (CSS custom properties)
 - Session type definitions (`app.d.ts`)
 - MIT License
-- CI workflow (GitHub Actions)
+- Type checking via svelte-check (`npm run check` before push)
 - Documentation: README, AGENTS.md
