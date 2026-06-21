@@ -3,6 +3,7 @@
 > A self-hostable admin dashboard for managing multiple Bluesky feed generators.
 > Inspired by Ozone (the labeler management UI) — but for feed engines.
 
+[![CI](https://github.com/[PERSON_NAME]-com/feed-manager-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/[PERSON_NAME]-com/feed-manager-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Feed generators are the backbone of the AT Protocol's discovery layer, but there's no standard way to *manage* them at scale. This project fills that gap — a web UI where you can monitor, configure, and operate one or more feed generator instances from a single dashboard.
@@ -111,8 +112,8 @@ docs/
 
 ## Related
 
-- [`Babesky-com/feedgen`](https://github.com/Babesky-com/feedgen) — the feed generator platform this UI manages *(currently private — public launch TBD)*
-- [`Babesky-com/personalization-engine`](https://github.com/Babesky-com/personalization-engine) — the ranking/scoring engine that powers the algos *(currently private — public launch TBD)*
+- [`[PERSON_NAME]-com/feedgen`](https://github.com/[PERSON_NAME]-com/feedgen) — the feed generator platform this UI manages *(private — public launch TBD)*
+- [`[PERSON_NAME]-com/personalization-engine`](https://github.com/[PERSON_NAME]-com/personalization-engine) — the ranking/scoring engine that powers the algos *(private — public launch TBD)*
 - [Ozone](https://github.com/bluesky-social/ozone) — the inspiration: a management UI for labelers
 
 ## License
