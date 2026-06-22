@@ -18,7 +18,7 @@ The full admin API contract is at `docs/ADMIN_API_CONTRACT.md` — read it befor
 
 - Use `npm` as package manager (`package-lock.json` is committed)
 - Run `npm run check` before pushing (svelte-check for type-checking)
-- CI runs on push/PR to `main` (`.github/workflows/ci.yml`): type-check + build
+- CI runs on push/PR to `main` (was `.github/workflows/ci.yml`, removed 2026-06-21 — see issue #14): type-check + build. The gate is now local `npm run check` run pre-push (install a local pre-push hook if not already present).
 - Feature branches from `main`, PR into `main`
 - Commit format: `feat|fix|chore: description (closes #N)`
 
