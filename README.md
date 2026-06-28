@@ -104,7 +104,7 @@ src/
 │   │       └── +page.svelte  # Feed preview with per-post scoring reasons
 │   └── api/
 │       ├── stats/+server.ts  # → feedgen /admin/stats
-│       ├── feeds/+server.ts  # → feedgen /admin/feed-daily-metrics-summary
+│       ├── feeds/+server.ts  # → feedgen /admin/feeds
 │       └── proxy/[...path]/  # Catch-all → feedgen /admin/<path>
 docs/
 └── ADMIN_API_CONTRACT.md     # Full feedgen admin API reference

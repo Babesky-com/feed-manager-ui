@@ -168,8 +168,140 @@ Time-series for charts (DAU, impressions, engagements by day).
 
 ## Per-Feed Metrics
 
+### GET /admin/feeds?days=7
+List registered feeds from `feed_config`, including display metadata and summary metrics.
+
+**Query params:**
+- `days` (optional, default 7, max 365) — aggregation window for summary metrics
+
+**Response:**
+```json
+{
+  "days": 7,
+  "feeds": [
+    {
+      "feed_type": "babesky-algo",
+      "display_name": "Babesky Algo",
+      "description": "Personalized feed for the babesky community",
+      "feed_uri": "at://did:web:feeds.example.com/app.bsky.feed.generator/babesky-algo",
+      "total_views": 1234,
+      "total_users": 321,
+      "days_active": 7
+    }
+  ]
+}
+```
+
+**Errors:** `404` is not used for an empty registry; returns `feeds: []`.
+
+---
+
+### GET /admin/feeds/:feedType?days=30
+Single feed detail with config metadata, aggregate totals, and recent daily metrics.
+
+**Query params:**
+- `days` (optional, default 30, max 365) — aggregation window; `daily_metrics` is capped to 30 days
+
+**Response:**
+```json
+{
+  "feed_type": "babesky-algo",
+  "display_name": "Babesky Algo",
+  "description": "Personalized feed for the babesky community",
+  "params": "{\"topic\":\"babesky\"}",
+  "feed_uri": "at://did:web:feeds.example.com/app.bsky.feed.generator/babesky-algo",
+  "created_at": "2026-06-01T12:00:00.000Z",
+  "updated_at": "2026-06-13T12:00:00.000Z",
+  "days": 30,
+  "total_views": 1234,
+  "total_users": 321,
+  "days_active": 12,
+  "daily_metrics": [
+    { "date_utc": "2026-06-13", "unique_users": 42, "daily_views": 200, "daily_posts": 800 }
+  ]
+}
+```
+
+**Errors:** `404 { error: 'NotFound', message: "Feed '<feedType>' not found in feed_config" }`
+
+---
+
+### PATCH /admin/feeds/:feedType
+Update editable feed metadata in `feed_config`. `feed_type` is immutable; create a new feed instead of renaming.
+
+**Body:**
+```json
+{
+  "display_name": "Babesky Algo",
+  "description": "Updated description",
+  "params": { "topic": "babesky" }
+}
+```
+
+**Response:**
+```json
+{
+  "feed_type": "babesky-algo",
+  "display_name": "Babesky Algo",
+  "description": "Updated description",
+  "params": "{\"topic\":\"babesky\"}",
+  "feed_uri": "at://did:web:feeds.example.com/app.bsky.feed.generator/babesky-algo",
+  "created_at": "2026-06-01T12:00:00.000Z",
+  "updated_at": "2026-06-13T12:00:00.000Z"
+}
+```
+
+**Errors:** `400 ValidationError`, `404 { error: 'NotFound', message: "Feed '<feedType>' not found in feed_config" }`
+
+---
+
+### GET /admin/feeds/:feedType/daily-metrics?days=30
+Time-series daily metrics for charts.
+
+**Query params:**
+- `days` (optional, default 30, max 365)
+
+**Response:**
+```json
+{
+  "feed_type": "babesky-algo",
+  "feed_uri": "at://did:web:feeds.example.com/app.bsky.feed.generator/babesky-algo",
+  "days": 30,
+  "metrics": [
+    { "date_utc": "2026-06-13", "unique_users": 42, "daily_views": 200, "daily_posts": 800 }
+  ]
+}
+```
+
+**Errors:** `404 { error: 'NotFound', message: "Feed '<feedType>' not found" }`
+
+---
+
+### GET /admin/feeds/:feedType/interactions?days=7
+Interaction breakdown for a specific feed. Matches `feed_interactions.feedContext` to the feed type.
+
+**Query params:**
+- `days` (optional, default 7, max 90)
+
+**Response:**
+```json
+{
+  "feed_type": "babesky-algo",
+  "days": 7,
+  "by_event": { "interactionLike": 120, "interactionRepost": 45 },
+  "by_day": { "2026-06-13": { "interactionLike": 20, "interactionRepost": 5 } },
+  "recent": [
+    { "event": "interactionLike", "user_did": "did:plc:...", "item_uri": "at://...", "created_at": "2026-06-13T12:00:00.000Z" }
+  ]
+}
+```
+
+**Errors:** `404 { error: 'NotFound', message: "Feed '<feedType>' not found" }`
+
+---
+
 ### GET /admin/feed-daily-metrics-summary?days=7
-Per-feed aggregated daily metrics.
+Legacy aggregate summary from `feed_daily_metrics`, grouped by feed URI. Prefer `/admin/feeds` when the UI needs feed config metadata.
 
 **Query params:**
 - `days` (optional, default 7, max 365)
@@ -178,7 +310,7 @@ Per-feed aggregated daily metrics.
 ```json
 {
   "days": 7,
-  "feeds": [{ "feed_uri": "at://...", "feed_shortname": "babesky-algo", "date_utc": "2026-06-13", "dau": 42, "requests": 200, "impressions": 800, "interactions": 15 }]
+  "feeds": [{ "feed_uri": "at://...", "total_views": 1234, "total_users": 321, "days_active": 7 }]
 }
 ```
 
@@ -390,7 +522,7 @@ Fetch post metadata (text, author) for display.
 |---------|-------------------|
 | Dashboard overview | `/admin/stats` |
 | Hourly breakdown | `/admin/stats/hourly` |
-| Per-feed metrics | `/admin/feed-daily-metrics-summary`, `/public/feed-stats` |
+| Per-feed metrics | `/admin/feeds`, `/admin/feeds/:feedType`, `/admin/feeds/:feedType/daily-metrics`, `/admin/feeds/:feedType/interactions`, `/admin/feed-daily-metrics-summary`, `/public/feed-stats` |
 | Feed preview | `/admin/feed-preview`, `/admin/post-preview` |
 | Personalization debugger | `/admin/personalization-verify` |
 | Post detail | `/admin/post-metrics`, `/admin/post-preview` |

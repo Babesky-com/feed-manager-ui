@@ -15,7 +15,15 @@
 
 	interface FeedMetricsSummary {
 		days: number;
-		feeds: { feed_uri: string; feed_shortname: string; date_utc: string; dau: number; requests: number; impressions: number; interactions: number }[];
+		feeds: {
+			feed_type: string;
+			display_name: string;
+			description: string | null;
+			feed_uri: string;
+			total_views: number;
+			total_users: number;
+			days_active: number;
+		}[];
 	}
 
 	let stats = $state<StatsResponse | null>(null);
@@ -49,19 +57,21 @@
 		}
 	}
 
-	// Derive unique feed shortnames from the daily metrics summary
+	function formatNumber(value: number | undefined): string {
+		return new Intl.NumberFormat().format(value ?? 0);
+	}
+
 	let feeds = $derived(
 		feedSummary?.feeds?.length
-			? Array.from(new Set(feedSummary.feeds.map((f) => f.feed_shortname))).map((shortname) => {
-					const feedRows = feedSummary!.feeds.filter((f) => f.feed_shortname === shortname);
-					const latest = feedRows[0];
+			? feedSummary.feeds.map((f) => {
 					return {
-						shortname,
-						displayName: shortname,
-						description: `${feedRows.length} days of data`,
-						totalRequests: feedRows.reduce((sum, f) => sum + f.requests, 0),
-						totalDau: feedRows.reduce((max, f) => Math.max(max, f.dau), 0),
-						feedUri: latest?.feed_uri,
+						shortname: f.feed_type,
+						displayName: f.display_name || f.feed_type,
+						description: f.description || f.feed_uri,
+						totalViews: f.total_views,
+						totalUsers: f.total_users,
+						daysActive: f.days_active,
+						feedUri: f.feed_uri,
 					};
 				})
 			: [],
@@ -151,13 +161,15 @@
 				{#each feeds as feed}
 					<article class="feed-card">
 						<h3>{feed.displayName}</h3>
+						<p class="feed-type">{feed.shortname}</p>
 						<p class="muted">{feed.description}</p>
 						<div class="feed-stats">
-							<span>{feed.totalRequests} requests</span>
-							<span>{feed.totalDau} peak DAU</span>
+							<span>{formatNumber(feed.totalViews)} views</span>
+							<span>{formatNumber(feed.totalUsers)} users</span>
+							<span>{formatNumber(feed.daysActive)} active days</span>
 						</div>
 						<div class="feed-actions">
-							<a href="/dashboard/feed-preview?viewer=" class="btn-sm">View Details</a>
+							<a href="/dashboard/feed-preview" class="btn-sm">Preview Feed</a>
 						</div>
 					</article>
 				{/each}
@@ -309,6 +321,14 @@
 
 	.feed-card h3 {
 		margin-bottom: 0.25rem;
+	}
+
+	.feed-type {
+		margin: 0 0 0.5rem;
+		color: var(--accent, #6366f1);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 	}
 
 	.feed-stats {
